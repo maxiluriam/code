@@ -15,6 +15,7 @@
   }
 
   function rules(grid: Array<Array<number>>) {
+    let grid1: Array<Array<number>> = grid;
     let count: number = 0;
     for (let i = 1; i < grid.length - 1; i++) {
       for (let j = 1; j < grid[0].length - 1; j++) {
@@ -44,17 +45,17 @@
         }
 
         if (grid[i][j] === 1 && (count === 2 || count === 3)) {
-          grid[i][j] = 1;
+          grid1[i][j] = 1;
         } else if (grid[i][j] === 0 && count === 3) {
-          grid[i][j] = 1;
+          grid1[i][j] = 1;
         } else {
-          grid[i][j] = 0;
+          grid1[i][j] = 0;
         }
 
         count = 0;
       }
     }
-    return grid;
+    return grid1;
   }
 
   let grid: Array<Array<number>> = createGrid();
