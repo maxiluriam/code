@@ -17,45 +17,102 @@
   let grid: Array<Array<number>> = createGrid();
 
   class Building {
-    input: any;
-    output: any;
-    inventory: any;
+    recipes: Array<any>;
+    inputInventory: Array<any>;
+    outputInventory: Array<any>;
 
-    constructor(input: any, output: any, inventory: any) {
-      this.input = input;
-      this.output = output;
-      this.inventory = inventory;
+    constructor(
+      recipes: Array<any>,
+      inputInventory: Array<any>,
+      outputInventory: Array<any>
+    ) {
+      this.recipes = recipes;
+      this.inputInventory = inputInventory;
+      this.outputInventory = outputInventory;
     }
 
     produce() {
-      if (
-        this.input.recource === this.inventory.recource &&
-        this.input.amount === this.inventory.amount
-      ) {
-        this.inventory.recource = this.output.recource;
-        this.inventory.amount = this.output.amount;
-      }
-    }
+      for (let i = 0; i < this.recipes.length; i++) {
+        let index: number = 0;
+        for (let j = 0; j < Object.keys(this.recipes[i].input).length; j++) {
+          console.log(
+            this.recipes[i].input[j].recource == this.inputInventory[j].recource
+          );
+          console.log(
+            this.recipes[i].input[j].recource,
+            this.inputInventory[j].recource
+          );
 
-    add() {
-      if (
-        this.inventory.amount !== this.input.amount &&
-        this.inventory.recource !== this.output.recource
-      ) {
-        this.inventory.amount = this.inventory.amount + 1;
+          if (
+            this.recipes[i].input[j].recource ===
+              this.inputInventory[j].recource &&
+            this.recipes[i].input[j].amount <= this.inputInventory[i].amount
+          ) {
+            index++;
+            // break;
+            //  console.log(index);
+          }
+        }
+        //  console.log(index === 2);
+        if (index === Object.keys(this.recipes[i].input).length) {
+          if (this.outputInventory[0].recource === "") {
+            this.outputInventory[0] = this.recipes[i].output;
+          } else if (
+            this.outputInventory[0].recource !== this.recipes[i].output
+          ) {
+          } else if (
+            this.outputInventory[0].recource === this.recipes[i].output
+          ) {
+            this.outputInventory[0].amount =
+              this.outputInventory[0].amount + this.recipes[i].output[0].amount;
+          }
+        }
       }
     }
   }
 
+  //  add(recource: string) {
+  //    for (let i = 0; i < this.inventory.length; i++) {
+  //      for (let j = 0; j < this.input.length; j++) {
+  //        if (
+  //          this.inventory[i].amount !== this.input[j].amount &&
+  //          this.inventory[i].recource !== this.output.recource &&
+  //          this.inventory[i].recource === recource
+  //        ) {
+  //          this.inventory[0].amount = this.inventory[0].amount + 1;
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+
   const furnace = new Building(
-    { recource: "stone", amount: 5 },
-    { recource: "brick", amount: 2 },
-    { recource: "stone", amount: 2 }
+    [
+      {
+        input: [
+          { recource: "ironOre", amount: 5 },
+          { recource: "coal", amount: 1 },
+        ],
+        output: [{ recource: "ironplate", amount: 4 }],
+      },
+      {
+        input: [
+          { recource: "stone", amount: 5 },
+          { recource: "coal", amount: 2 },
+        ],
+        output: [{ recource: "brick", amount: 1 }],
+      },
+    ],
+    [
+      { recource: "stone", amount: 10 },
+      { recource: "coal", amount: 10 },
+    ],
+    [{ recource: "", amount: 0 }]
   );
 
-  furnace.add();
-  furnace.add();
-  furnace.add();
+  // furnace.add("stone");
+  // furnace.add("stone");
+  // furnace.add("stone");
   furnace.produce();
 
   console.log(furnace);
