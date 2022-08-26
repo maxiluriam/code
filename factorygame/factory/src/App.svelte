@@ -46,7 +46,7 @@
           if (
             this.recipes[i].input[j].recource ===
               this.inputInventory[j].recource &&
-            this.recipes[i].input[j].amount <= this.inputInventory[i].amount
+            this.recipes[i].input[j].amount <= this.inputInventory[j].amount
           ) {
             index++;
             // break;
@@ -57,6 +57,18 @@
         if (index === Object.keys(this.recipes[i].input).length) {
           if (this.outputInventory[0].recource === "") {
             this.outputInventory[0] = this.recipes[i].output;
+
+            for (
+              let j = 0;
+              j < Object.keys(this.recipes[i].input).length;
+              j++
+            ) {
+              this.inputInventory[j].amount =
+                this.inputInventory[j].amount - this.recipes[i].input[j].amount;
+              if (this.inputInventory[j].amount === 0) {
+                this.inputInventory[j].recource = "";
+              }
+            }
           } else if (
             this.outputInventory[0].recource !== this.recipes[i].output
           ) {
@@ -65,26 +77,41 @@
           ) {
             this.outputInventory[0].amount =
               this.outputInventory[0].amount + this.recipes[i].output[0].amount;
+
+            for (
+              let j = 0;
+              j < Object.keys(this.recipes[i].input).length;
+              j++
+            ) {
+              this.inputInventory[j].amount =
+                this.inputInventory[j].amount - this.recipes[j].input.amount;
+              if (this.inputInventory[j].amount === 0) {
+                this.inputInventory[j].recource = "";
+              }
+            }
           }
         }
       }
     }
-  }
 
-  //  add(recource: string) {
-  //    for (let i = 0; i < this.inventory.length; i++) {
-  //      for (let j = 0; j < this.input.length; j++) {
-  //        if (
-  //          this.inventory[i].amount !== this.input[j].amount &&
-  //          this.inventory[i].recource !== this.output.recource &&
-  //          this.inventory[i].recource === recource
-  //        ) {
-  //          this.inventory[0].amount = this.inventory[0].amount + 1;
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
+    add(recource: string) {
+      let bolean = false;
+      for (let i = 0; i < this.inputInventory.length; i++) {
+        for (let j = 0; j < Object.keys(this.recipes[i].input).length; j++) {
+          if (
+            this.inputInventory[i].amount !== this.recipes[i].input.amount &&
+            this.inputInventory[i].recource === recource
+          ) {
+            bolean = true;
+          }
+        }
+      }
+
+      if (bolean === true) {
+        this.inputInventory[0].amount = this.inputInventory[0].amount + 1;
+      }
+    }
+  }
 
   const furnace = new Building(
     [
@@ -110,9 +137,9 @@
     [{ recource: "", amount: 0 }]
   );
 
-  // furnace.add("stone");
-  // furnace.add("stone");
-  // furnace.add("stone");
+  furnace.add("iron");
+  furnace.add("stone");
+  furnace.add("stone");
   furnace.produce();
 
   console.log(furnace);
