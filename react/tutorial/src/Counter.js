@@ -9,6 +9,7 @@ const Counter = (props) => {
       <h1>{count}</h1>
 
       <button
+        className="minus"
         onClick={() => {
           setCount((count) => count - 5);
         }}
@@ -17,6 +18,7 @@ const Counter = (props) => {
       </button>
 
       <button
+        className="minus"
         onClick={() => {
           setCount((count) => count - 1);
         }}
@@ -24,6 +26,7 @@ const Counter = (props) => {
         - 1
       </button>
       <button
+        className="plus"
         onClick={() => {
           setCount((count) => count + 1);
         }}
@@ -32,6 +35,7 @@ const Counter = (props) => {
       </button>
 
       <button
+        className="plus"
         onClick={() => {
           setCount((count) => count + 5);
         }}
