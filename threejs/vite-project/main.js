@@ -31,7 +31,7 @@ let addplane = function (posX, posY, posZ, rotX, rotY, rotZ) {
   const torusObject = new THREE.PlaneGeometry(20, 20, 10, 10);
   const torusMaterial = new THREE.MeshStandardMaterial({
     color: "gray",
-    wireframe: true,
+    wireframe: false,
   });
   const Plane = new THREE.Mesh(torusObject, torusMaterial);
 
@@ -250,13 +250,13 @@ let apple = { x: 5, y: 5, z: 0, eaten: false };
 let appleGeometry = new THREE.BoxGeometry(1, 1, 1, 1);
 let appleMaterial = new THREE.MeshStandardMaterial({
   color: "red",
-  wireframe: true,
+  wireframe: false,
 });
 
 let snakeSegment = new THREE.BoxGeometry(1, 1, 1.7, 1);
 let snakeMaterial = new THREE.MeshStandardMaterial({
   color: "green",
-  wireframe: true,
+  wireframe: false,
 });
 
 let renderApple = function (apple, appleGeometry, appleMaterial) {

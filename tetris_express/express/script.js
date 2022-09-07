@@ -4,7 +4,7 @@ function getRandomInt(max) {
 
 let chooseBlock = function () {
   let number = getRandomInt(7);
-  // let number = 6;
+  //let number = 1;
   let block = [];
   switch (number) {
     case 0:
@@ -92,7 +92,7 @@ let createGrid = function () {
   }
   grid.push([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
 
-  console.log(grid);
+  //console.log(grid);
   return grid;
 };
 
@@ -230,7 +230,7 @@ let checkLanding = function (grid, Block, landed) {
       }
     }, "50");
 
-    console.log(grid);
+    //  console.log(grid);
   }
 };
 
@@ -263,168 +263,194 @@ let addRestartButton = function () {
   snakeContainer.appendChild(resetForm);
 };
 
-let rotate = function (block, grid) {
-  if (block[1].block === "tBlock") {
-    if (block[1].rotation === 1) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: -1, y: 0 };
-      block[4] = { x: 1, y: 0 };
-      block[5] = { x: 0, y: -1 };
-    } else if (block[1].rotation === 2) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: 1 };
-      block[4] = { x: 1, y: 0 };
-      block[5] = { x: 0, y: -1 };
-    } else if (block[1].rotation === 3) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: 1 };
-      block[4] = { x: -1, y: 0 };
-      block[5] = { x: 1, y: 0 };
-    } else if (block[1].rotation === 0) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: 1 };
-      block[4] = { x: -1, y: 0 };
-      block[5] = { x: 0, y: -1 };
-    }
-  }
-  if (block[1].block === "strait") {
-    if (block[1].rotation === 1) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: -1, y: 0 };
-      block[4] = { x: 1, y: 0 };
-      block[5] = { x: -2, y: 0 };
-    } else if (block[1].rotation === 2) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: -1 };
-      block[4] = { x: 0, y: 1 };
-      block[5] = { x: 0, y: -2 };
-    } else if (block[1].rotation === 3) {
-      block[2] = { x: 0, y: -1 };
-      block[3] = { x: -1, y: -1 };
-      block[4] = { x: 1, y: -1 };
-      block[5] = { x: -2, y: -1 };
-    } else if (block[1].rotation === 0) {
-      block[2] = { x: -1, y: 0 };
-      block[3] = { x: -1, y: -1 };
-      block[4] = { x: -1, y: 1 };
-      block[5] = { x: -1, y: -2 };
-    }
-  }
-  if (block[1].block === "rightL") {
-    if (block[1].rotation === 1) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: -1, y: 0 };
-      block[4] = { x: 1, y: 0 };
-      block[5] = { x: -1, y: 1 };
-    } else if (block[1].rotation === 2) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: -1 };
-      block[4] = { x: 0, y: 1 };
-      block[5] = { x: -1, y: -1 };
-    } else if (block[1].rotation === 3) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 1, y: 0 };
-      block[4] = { x: -1, y: 0 };
-      block[5] = { x: 1, y: -1 };
-    } else if (block[1].rotation === 0) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: -1 };
-      block[4] = { x: 0, y: 1 };
-      block[5] = { x: 1, y: 1 };
-    }
-  }
-  if (block[1].block === "leftL") {
-    if (block[1].rotation === 1) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: -1, y: 0 };
-      block[4] = { x: 1, y: 0 };
-      block[5] = { x: -1, y: -1 };
-    } else if (block[1].rotation === 2) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: -1 };
-      block[4] = { x: 0, y: 1 };
-      block[5] = { x: 1, y: -1 };
-    } else if (block[1].rotation === 3) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 1, y: 0 };
-      block[4] = { x: -1, y: 0 };
-      block[5] = { x: 1, y: 1 };
-    } else if (block[1].rotation === 0) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 0, y: -1 };
-      block[4] = { x: 0, y: 1 };
-      block[5] = { x: -1, y: 1 };
-    }
-  }
-  if (block[1].block === "square") {
-    if (block[1].rotation === 1) {
-    } else if (block[1].rotation === 2) {
-    } else if (block[1].rotation === 3) {
-    } else if (block[1].rotation === 0) {
-    }
-  }
-  if (block[1].block === "leftS") {
-    if (block[1].rotation === 1) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: 1, y: 0 };
-      block[4] = { x: 0, y: -1 };
-      block[5] = { x: -1, y: -1 };
-    } else if (block[1].rotation === 2) {
-      block[2] = { x: 0, y: 1 };
-      block[3] = { x: 0, y: -0 };
-      block[4] = { x: 1, y: -1 };
-      block[5] = { x: 1, y: 0 };
-    } else if (block[1].rotation === 3) {
-      block[2] = { x: 0, y: 1 };
-      block[3] = { x: 1, y: 1 };
-      block[4] = { x: 0, y: 0 };
-      block[5] = { x: -1, y: 0 };
-    } else if (block[1].rotation === 0) {
-      block[2] = { x: -1, y: 1 };
-      block[3] = { x: -1, y: -0 };
-      block[4] = { x: 0, y: -1 };
-      block[5] = { x: 0, y: 0 };
-    }
-  }
-  if (block[1].block === "rightS") {
-    if (block[1].rotation === 1) {
-      block[2] = { x: 0, y: 0 };
-      block[3] = { x: -1, y: 0 };
-      block[4] = { x: 0, y: -1 };
-      block[5] = { x: 1, y: -1 };
-    } else if (block[1].rotation === 2) {
-      block[2] = { x: 1, y: 1 };
-      block[3] = { x: 1, y: -0 };
-      block[4] = { x: 0, y: -1 };
-      block[5] = { x: 0, y: 0 };
-    } else if (block[1].rotation === 3) {
-      block[2] = { x: 0, y: 1 };
-      block[3] = { x: -1, y: 1 };
-      block[4] = { x: 0, y: 0 };
-      block[5] = { x: 1, y: 0 };
-    } else if (block[1].rotation === 0) {
-      block[2] = { x: 0, y: 1 };
-      block[3] = { x: 0, y: -0 };
-      block[4] = { x: -1, y: -1 };
-      block[5] = { x: -1, y: 0 };
-    }
-  }
-
-  for (let k = 2; k < block.length; k++) {
-    if (grid[block[0].y + block[k].y][block[0].x + block[k].x - 1] !== 0) {
-      if (grid[block[0].y + block[k].y][block[0].x + block[k].x + 3] !== 0) {
-        block[0].x--;
-        console.log("ee");
-      } else if (
-        grid[block[0].y + block[k].y][block[0].x + block[k].x - 3] !== 0
+let rotate = function (block, grid, lastRotation) {
+  for (let i = 0; i < 2; i++) {
+    for (let k = 2; k < block.length; k++) {
+      if (
+        grid[block[0].y + block[k].y][block[0].x + block[k].x] !== 0 &&
+        grid[block[0].y + block[k].y][block[0].x + block[k].x - 2] !== 0
       ) {
-        block[0].x++;
-        console.log("ee");
+        // console.log("ww");
+        block[1].rotation = lastRotation[0];
+
+        break;
       }
     }
-    //   if (grid[block[0].y + block[k].y][block[0].x + block[k].x] !== 0) {
-    //     block[0].x++;
-    //   }
+
+    if (block[1].block === "tBlock") {
+      if (block[1].rotation === 1) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: -1, y: 0 };
+        block[4] = { x: 1, y: 0 };
+        block[5] = { x: 0, y: -1 };
+      } else if (block[1].rotation === 2) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: 1 };
+        block[4] = { x: 1, y: 0 };
+        block[5] = { x: 0, y: -1 };
+      } else if (block[1].rotation === 3) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: 1 };
+        block[4] = { x: -1, y: 0 };
+        block[5] = { x: 1, y: 0 };
+      } else if (block[1].rotation === 0) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: 1 };
+        block[4] = { x: -1, y: 0 };
+        block[5] = { x: 0, y: -1 };
+      }
+    }
+    if (block[1].block === "strait") {
+      if (block[1].rotation === 1) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: -1, y: 0 };
+        block[4] = { x: 1, y: 0 };
+        block[5] = { x: -2, y: 0 };
+      } else if (block[1].rotation === 2) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: -1 };
+        block[4] = { x: 0, y: 1 };
+        block[5] = { x: 0, y: -2 };
+      } else if (block[1].rotation === 3) {
+        block[2] = { x: 0, y: -1 };
+        block[3] = { x: -1, y: -1 };
+        block[4] = { x: 1, y: -1 };
+        block[5] = { x: -2, y: -1 };
+      } else if (block[1].rotation === 0) {
+        block[2] = { x: -1, y: 0 };
+        block[3] = { x: -1, y: -1 };
+        block[4] = { x: -1, y: 1 };
+        block[5] = { x: -1, y: -2 };
+      }
+    }
+    if (block[1].block === "rightL") {
+      if (block[1].rotation === 1) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: -1, y: 0 };
+        block[4] = { x: 1, y: 0 };
+        block[5] = { x: -1, y: 1 };
+      } else if (block[1].rotation === 2) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: -1 };
+        block[4] = { x: 0, y: 1 };
+        block[5] = { x: -1, y: -1 };
+      } else if (block[1].rotation === 3) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 1, y: 0 };
+        block[4] = { x: -1, y: 0 };
+        block[5] = { x: 1, y: -1 };
+      } else if (block[1].rotation === 0) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: -1 };
+        block[4] = { x: 0, y: 1 };
+        block[5] = { x: 1, y: 1 };
+      }
+    }
+    if (block[1].block === "leftL") {
+      if (block[1].rotation === 1) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: -1, y: 0 };
+        block[4] = { x: 1, y: 0 };
+        block[5] = { x: -1, y: -1 };
+      } else if (block[1].rotation === 2) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: -1 };
+        block[4] = { x: 0, y: 1 };
+        block[5] = { x: 1, y: -1 };
+      } else if (block[1].rotation === 3) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 1, y: 0 };
+        block[4] = { x: -1, y: 0 };
+        block[5] = { x: 1, y: 1 };
+      } else if (block[1].rotation === 0) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 0, y: -1 };
+        block[4] = { x: 0, y: 1 };
+        block[5] = { x: -1, y: 1 };
+      }
+    }
+    if (block[1].block === "square") {
+      if (block[1].rotation === 1) {
+      } else if (block[1].rotation === 2) {
+      } else if (block[1].rotation === 3) {
+      } else if (block[1].rotation === 0) {
+      }
+    }
+    if (block[1].block === "leftS") {
+      if (block[1].rotation === 1) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: 1, y: 0 };
+        block[4] = { x: 0, y: -1 };
+        block[5] = { x: -1, y: -1 };
+      } else if (block[1].rotation === 2) {
+        block[2] = { x: 0, y: 1 };
+        block[3] = { x: 0, y: -0 };
+        block[4] = { x: 1, y: -1 };
+        block[5] = { x: 1, y: 0 };
+      } else if (block[1].rotation === 3) {
+        block[2] = { x: 0, y: 1 };
+        block[3] = { x: 1, y: 1 };
+        block[4] = { x: 0, y: 0 };
+        block[5] = { x: -1, y: 0 };
+      } else if (block[1].rotation === 0) {
+        block[2] = { x: -1, y: 1 };
+        block[3] = { x: -1, y: -0 };
+        block[4] = { x: 0, y: -1 };
+        block[5] = { x: 0, y: 0 };
+      }
+    }
+    if (block[1].block === "rightS") {
+      if (block[1].rotation === 1) {
+        block[2] = { x: 0, y: 0 };
+        block[3] = { x: -1, y: 0 };
+        block[4] = { x: 0, y: -1 };
+        block[5] = { x: 1, y: -1 };
+      } else if (block[1].rotation === 2) {
+        block[2] = { x: 1, y: 1 };
+        block[3] = { x: 1, y: -0 };
+        block[4] = { x: 0, y: -1 };
+        block[5] = { x: 0, y: 0 };
+      } else if (block[1].rotation === 3) {
+        block[2] = { x: 0, y: 1 };
+        block[3] = { x: -1, y: 1 };
+        block[4] = { x: 0, y: 0 };
+        block[5] = { x: 1, y: 0 };
+      } else if (block[1].rotation === 0) {
+        block[2] = { x: 0, y: 1 };
+        block[3] = { x: 0, y: -0 };
+        block[4] = { x: -1, y: -1 };
+        block[5] = { x: -1, y: 0 };
+      }
+    }
+
+    for (let k = 2; k < block.length; k++) {
+      if (grid[block[0].y + block[k].y][block[0].x + block[k].x - 1] !== 0) {
+        if (grid[block[0].y + block[k].y][block[0].x + block[k].x] !== 0) {
+          block[0].x--;
+
+          // console.log("ee");
+        } else if (
+          grid[block[0].y + block[k].y][block[0].x + block[k].x - 2] !== 0
+        ) {
+          block[0].x++;
+
+          //  console.log("ee");
+        } else {
+          block[1].rotation = lastRotation[0];
+          break;
+        }
+      }
+    }
+    let bolean = false;
+    for (let k = 2; k < block.length; k++) {
+      if (grid[block[0].y + block[k].y][block[0].x + block[k].x - 1] !== 0) {
+        bolean = true;
+      }
+    }
+    if (bolean === true) {
+      block[1].rotation = lastRotation[0];
+      block[0].x = lastRotation[1];
+    }
   }
 };
 const score = document.getElementById("score");
@@ -442,7 +468,7 @@ let clear = function (grid) {
         grid.splice(0, 1);
         grid.unshift([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
         grid.unshift([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-        console.log("ee");
+        //   console.log("ee");
       }, "25");
     }
   }
@@ -491,13 +517,14 @@ let movSpeed = 5;
 let checkCount = 10;
 let checkSpeed = 10;
 let sHeld = true;
+let lastRotation = [0, 0];
 
 var keys = [];
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 
 function keyDownHandler(e) {
-  if (e.key === "s" && sHeld === true) {
+  if ((e.key === "s" || e.which === 40) && sHeld === true) {
     movCount = 1;
     movSpeed = 1;
     sHeld = false;
@@ -505,22 +532,35 @@ function keyDownHandler(e) {
 }
 
 function keyUpHandler(e) {
-  if (e.key === "s" && sHeld === false) {
+  if ((e.key === "s" || e.which === 40) && sHeld === false) {
     movCount = 5;
     movSpeed = 5;
     sHeld = true;
   }
 }
 
-window.addEventListener("keypress", (e) => {
+let pause = false;
+
+window.addEventListener("keydown", (e) => {
   let blockmovement = hitbox(block, grid);
-  // console.log(e.key);
+  lastRotation[0] = block[1].rotation;
+  lastRotation[1] = block[0].x;
+  // console.log(e.key);¨
 
   if (death !== true) {
-    if (e.key === "a" && blockmovement !== "left") {
+    if (e.key === "p") {
+      if (pause === false) {
+        pause = true;
+      }
+      if (pause === true) {
+        pause = false;
+      }
+    }
+
+    if ((e.key === "a" || e.which === 37) && blockmovement !== "left") {
       block[0].x--;
     }
-    if (e.key === "d" && blockmovement !== "right") {
+    if ((e.key === "d" || e.which === 39) && blockmovement !== "right") {
       block[0].x++;
     }
     if (e.key === "q") {
@@ -530,7 +570,7 @@ window.addEventListener("keypress", (e) => {
         block[1].rotation = block[1].rotation + 3;
       }
     }
-    if (e.key === "e") {
+    if (e.key === "e" || e.key === "w" || e.which === 38) {
       if (block[1].rotation <= 2) {
         block[1].rotation++;
       } else {
@@ -538,8 +578,8 @@ window.addEventListener("keypress", (e) => {
       }
     }
 
-    // console.log(block[1].rotation);
-    rotate(block, grid);
+    //console.log(block[1].rotation, lastRotation);
+    rotate(block, grid, lastRotation);
 
     //    render(block, grid);
   }
@@ -548,23 +588,26 @@ block = chooseBlock();
 let land = false;
 
 let blockTick = setInterval(function () {
-  pointsUpp(sHeld);
-  movCount = counter(movCount, movSpeed);
-  checkCount = counter(checkCount, checkSpeed);
-  let death = checkDeath(grid);
+  if (pause === false) {
+    pointsUpp(sHeld);
+    movCount = counter(movCount, movSpeed);
 
-  if (land === true) {
-    block = chooseBlock();
-    landed = false;
-    land = false;
-  }
-  landed = downWardsMovement(movCount, movSpeed, block, grid);
-  land = checkLanding(grid, block, landed);
+    let death = checkDeath(grid);
 
-  render(block, grid);
-  clear(grid);
-  if (death === true) {
-    clearInterval(blockTick);
-    addRestartButton();
+    if (land === true) {
+      block = chooseBlock();
+      landed = false;
+      land = false;
+    }
+    landed = downWardsMovement(movCount, movSpeed, block, grid);
+    land = checkLanding(grid, block, landed);
+
+    render(block, grid);
+    clear(grid);
+    if (death === true) {
+      clearInterval(blockTick);
+      addRestartButton();
+    }
   }
 }, delay);
+// jag vet att du läser det här
