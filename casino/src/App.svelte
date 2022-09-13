@@ -53,35 +53,33 @@ function getrandom( array:Array<Array<string>>) {
 	function checkPoints(array:Array<Array<string>>) {
 		
 	
-	let j:number = 1
-	let cache:string = ""
+	let j:number = 0
+	let highScore:number = 0
+	let cache:string
 
-	for (let i = 0; i < array.length; i++) {
+	for (let i = 1; i < array.length; i++) {
 		
-	if (i === 0) {
+	if (i === 1) {
 		cache = array[i][0]
-		j++	
-	}else if (cache === array[i][0]) {
+		j++
+	}  else if (cache === array[i][0]) {
 
 		j++
 		
-	}else if(cache !== array[i][0]){
+	} else if(cache !== array[i][0]){
 
 		j = 1
 		cache = array[i][0]
 	}
+	if (j > highScore) {
+	
+	highScore = j
+}
 
-	if (j >= 2) {
-		console.log(j)
 
 	}
 
-
-	console.log(cache)
-	console.log(j)
-	}
-
-
+return highScore
 
 }
 	
@@ -91,14 +89,14 @@ let finsishedArray:Array<Array<string>> = getrandom(array)
 
 console.log(finsishedArray)
 
-
+let p:number = 0
 
 </script>
 
 <main>
 
-	<button  on:click={ () => { let i = 0; let myInterval = setInterval( () => {; finsishedArray = getrandom(array); i++; if (i > 10){clearInterval(myInterval); checkPoints(finsishedArray)}}, 50);}}></button>
-
+	<button  on:click={ () => { let i = 0; let myInterval = setInterval( () => {; finsishedArray = getrandom(array); i++; if (i > 10){clearInterval(myInterval);  p = checkPoints(finsishedArray)}}, 50);}}></button>
+	<p>{p}</p>
 
 	<div class="two">
 
