@@ -1,6 +1,7 @@
-import { schema, model, models } from "mongoose"; // "1m (gzipped: 280.9k)"
+import mongoose from "mongoose";
+import { model } from "mongoose";
 
-const testSchema = new mongoose.schema({
+const testSchema = new mongoose.Schema({
   name: String,
 
   email: {
