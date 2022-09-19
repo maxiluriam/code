@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
-import { model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const testSchema = new mongoose.Schema({
+const testSchema = new Schema({
   name: String,
 
   email: {
@@ -13,6 +12,5 @@ const testSchema = new mongoose.Schema({
   },
 });
 
-const Test = model.test || model("Test", testSchema);
-
+const Test = models.Test || model("Test", testSchema);
 export default Test;

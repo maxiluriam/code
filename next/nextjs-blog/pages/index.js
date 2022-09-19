@@ -1,16 +1,49 @@
-import Form from "./Form";
-
 import { useState } from "react";
 
 import { useRouter } from "next/router";
 
-export default function Home() {
-  const [people, setPeople] = useState([{ name: "max", number: 0, id: 1 }]);
+import { Header } from "next/dist/lib/load-custom-routes";
 
+import connectMongo from "../util/connectMongo";
+import Test from "../models/testModels";
+
+export default function Home({ tests }) {
+  const createTest = async () => {
+    const randomNum = Math.floor(Math.random() * 10000);
+
+    const res = await fetch("/api/test/add", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+
+      body: JSON.stringify({
+        name: `test ${randomNum}`,
+        email: `test@${randomNum}test.com`,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+    // return data;
+  };
+
+  let e = getServerSideProps();
+  console.log(e);
   return (
     <div className="container">
       <main>
-        <Form people={people} />
+        <button onClick={createTest}>woooo</button>
+
+        <div>
+          {tests.map((test) => (
+            <div key={test._id}>
+              <h1>{test.name}</h1>
+              <h2>{test.email}</h2>
+            </div>
+          ))}
+        </div>
       </main>
 
       <style>{`
@@ -127,3 +160,30 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  try {
+    console.log("connecting");
+    await connectMongo();
+
+    console.log("connceted");
+
+    const tests = await Test.find();
+
+    console.log("fetched");
+    console.log("F_Werner_/_F_Nikola");
+    console.log();
+    return {
+      props: {
+        tests: JSON.parse(JSON.stringify(tests)),
+      },
+    };
+  } catch (er) {
+    console.log(er);
+    return {
+      props: {
+        notFound: true,
+      },
+    };
+  }
+};
