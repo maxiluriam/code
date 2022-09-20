@@ -1,15 +1,16 @@
 import connectMongo from "../../../util/connectMongo";
 import Test from "../../../models/testModels";
 
-export default async function addTest(req, res) {
+export default async function removeTest(req, res) {
   try {
-    const { name } = req.body;
+    const { _id } = req.body;
+    console.log(_id);
     console.log("wwwwwwwwwwwwwwwwww");
     await connectMongo();
 
     console.log("f nikola");
 
-    const test = await Test.create(req.body);
+    const test = await Test.findByIdAndDelete(_id);
 
     console.log("f Werner");
 

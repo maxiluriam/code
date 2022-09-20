@@ -1,9 +1,5 @@
 import { useState } from "react";
-
-import { useRouter } from "next/router";
-
-import { Header } from "next/dist/lib/load-custom-routes";
-
+import { GetServerSideProps } from "next";
 import connectMongo from "../util/connectMongo";
 import Test from "../models/testModels";
 
@@ -18,8 +14,7 @@ export default function Home({ tests }) {
       },
 
       body: JSON.stringify({
-        name: `test ${randomNum}`,
-        email: `test@${randomNum}test.com`,
+        name: `${randomNum}`,
       }),
     });
 
@@ -29,18 +24,87 @@ export default function Home({ tests }) {
     // return data;
   };
 
-  let e = getServerSideProps();
-  console.log(e);
+  const removeTest = async (_id) => {
+    const randomNum = Math.floor(Math.random() * 10000);
+
+    const res = await fetch("/api/test/delete", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+
+      body: JSON.stringify({
+        _id: _id,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+    // return data;
+  };
+
+  const editTest = async (_id) => {
+    const randomNum = Math.floor(Math.random() * 10000);
+
+    const res = await fetch("/api/test/edit", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+
+      body: JSON.stringify({
+        _id: _id,
+        name: `${randomNum}`,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+    // return data;
+  };
+
+  async function refreshPage() {
+    setTimeout(refresh, 500);
+
+    function refresh(params) {
+      window.location.reload(true);
+    }
+  }
+
   return (
     <div className="container">
       <main>
-        <button onClick={createTest}>woooo</button>
+        <button
+          onClick={() => {
+            createTest();
+            refreshPage();
+          }}
+        >
+          woooo
+        </button>
 
         <div>
           {tests.map((test) => (
             <div key={test._id}>
               <h1>{test.name}</h1>
-              <h2>{test.email}</h2>
+              <button
+                onClick={() => {
+                  removeTest(test._id);
+                  refreshPage();
+                }}
+              >
+                REMOVE
+              </button>
+              <button
+                onClick={() => {
+                  editTest(test._id);
+                  refreshPage();
+                }}
+              >
+                REROLL
+              </button>
             </div>
           ))}
         </div>
@@ -172,7 +236,7 @@ export const getServerSideProps = async () => {
 
     console.log("fetched");
     console.log("F_Werner_/_F_Nikola");
-    console.log();
+
     return {
       props: {
         tests: JSON.parse(JSON.stringify(tests)),
