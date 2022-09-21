@@ -3,8 +3,11 @@ import { GetServerSideProps } from "next";
 import connectMongo from "../util/connectMongo";
 import Test from "../models/testModels";
 
+import AddVideo from "./addVideo";
+import AddPersonForm from "./Form";
+
 export default function Home({ tests }) {
-  const createTest = async () => {
+  const createTest = async (name) => {
     const randomNum = Math.floor(Math.random() * 10000);
 
     const res = await fetch("/api/test/add", {
@@ -14,7 +17,8 @@ export default function Home({ tests }) {
       },
 
       body: JSON.stringify({
-        name: `${randomNum}`,
+        name: `${name}`,
+        videoList: ["https://youtu.be/VBlFHuCzPgY"],
       }),
     });
 
@@ -44,9 +48,7 @@ export default function Home({ tests }) {
     // return data;
   };
 
-  const editTest = async (_id) => {
-    const randomNum = Math.floor(Math.random() * 10000);
-
+  const editTest = async (_id, newVideoList) => {
     const res = await fetch("/api/test/edit", {
       method: "PUT",
       headers: {
@@ -56,6 +58,7 @@ export default function Home({ tests }) {
       body: JSON.stringify({
         _id: _id,
         name: `${randomNum}`,
+        videoList: newVideoList,
       }),
     });
 
@@ -76,19 +79,15 @@ export default function Home({ tests }) {
   return (
     <div className="container">
       <main>
-        <button
-          onClick={() => {
-            createTest();
-            refreshPage();
-          }}
-        >
-          woooo
-        </button>
-
+        <AddPersonForm></AddPersonForm>
         <div>
           {tests.map((test) => (
             <div key={test._id}>
               <h1>{test.name}</h1>
+              <h1>{test.videoList}</h1>
+
+              <AddVideo prop={test}></AddVideo>
+
               <button
                 onClick={() => {
                   removeTest(test._id);

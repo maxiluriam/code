@@ -10,9 +10,7 @@ export default async function removeTest(req, res) {
 
     console.log("f nikola");
 
-    const test = await Test.findByIdAndUpdate(req.body._id, {
-      name: req.body.name,
-    });
+    const test = await Test.findByIdAndUpdate(req.body._id, req.body);
 
     console.log("f Werner");
 

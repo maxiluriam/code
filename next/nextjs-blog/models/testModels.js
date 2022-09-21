@@ -7,6 +7,12 @@ const testSchema = new Schema({
     reqiured: true,
     unique: false,
   },
+  videoList: {
+    type: Array,
+
+    reqiured: true,
+    unique: false,
+  },
 });
 
 const Test = models.Test || model("Test", testSchema);

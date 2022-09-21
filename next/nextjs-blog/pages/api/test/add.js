@@ -3,7 +3,7 @@ import Test from "../../../models/testModels";
 
 export default async function addTest(req, res) {
   try {
-    const { name } = req.body;
+    const { name, videoList } = req.body;
     console.log("wwwwwwwwwwwwwwwwww");
     await connectMongo();
 
