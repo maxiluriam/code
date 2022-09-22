@@ -14,7 +14,7 @@ const AddPersonForm = () => {
 
       body: JSON.stringify({
         name: `${name}`,
-        videoList: ["https://youtu.be/VBlFHuCzPgY"],
+        videoList: ["https://www.youtube.com/embed/VBlFHuCzPgY"],
       }),
     });
 

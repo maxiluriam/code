@@ -3,7 +3,7 @@ import { useState } from "react";
 const AddVideo = (prop) => {
   const [newVideo, setNewVideo] = useState("");
 
-  const editTest = async (_id, newVideoList) => {
+  const editTest = async (_id, name, newVideoList) => {
     const res = await fetch("/api/test/edit", {
       method: "PUT",
       headers: {
@@ -12,7 +12,7 @@ const AddVideo = (prop) => {
 
       body: JSON.stringify({
         _id: _id,
-        name: `${prop.name}`,
+        name: `${name}`,
         videoList: newVideoList,
       }),
     });
@@ -26,26 +26,29 @@ const AddVideo = (prop) => {
   const handleSubmit = function (e, prop) {
     e.preventDefault();
     const videoList = prop.prop.videoList;
-    console.log(prop.prop.videoList);
-    const cache = [...videoList, e.target[1].value];
+    let temp = "";
 
-    editTest(
-      prop.prop._id,
+    if (e.target[1].value.includes("https://youtu.be/") === true) {
+      temp = e.target[1].value.replace(
+        "https://youtu.be/",
+        "https://www.youtube.com/embed/"
+      );
 
-      {
-        body: JSON.stringify({
-          name: `${prop.prop.name}`,
-          videoList: ["cache"],
-        }),
-      }
-    );
+      const cache = [...videoList, temp];
+
+      console.log(prop.prop.videoList);
+
+      editTest(prop.prop._id, `${prop.prop.name}`, cache);
+    } else {
+      alert("Syntax error");
+    }
   };
 
   function handleChange(e) {
-    if (e.target.value.length < 10) {
+    if (e.target.value.length < 30) {
       setNewVideo(e.target.value);
     } else {
-      alert("maximum 10 chars");
+      alert("maximum 30 chars");
     }
   }
 
