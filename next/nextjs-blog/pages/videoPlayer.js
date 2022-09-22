@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const VideoPlayer = (prop) => {
-  const [currentVideo, setCurrentVideo] = useState(prop.prop.videoList[0]);
   const [i, setI] = useState(0);
   const limit = prop.prop.videoList.length - 1;
 
@@ -9,31 +8,28 @@ const VideoPlayer = (prop) => {
 
   function checkNumber(i, limit) {
     if (i > limit) {
-      setI(0);
+      return 0;
     } else if (i < 0) {
-      setI(limit);
+      return limit;
     } else {
-      setI(i);
+      return i;
     }
   }
-
+  let cache = 0;
   return (
     <div>
       <button
         onClick={() => {
-          console.log(i, limit);
-          setI(i--);
-          console.log(i, limit);
-          checkNumber(i, limit);
-          console.log(i, limit);
-          setCurrentVideo(array[i]);
+          setI(checkNumber(i - 1, limit));
         }}
-      ></button>
+      >
+        i
+      </button>
 
       <iframe
         width="560"
         height="315"
-        src={currentVideo}
+        src={array[i]}
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -42,14 +38,11 @@ const VideoPlayer = (prop) => {
 
       <button
         onClick={() => {
-          console.log(i, limit);
-          setI(i++);
-          console.log(i, limit);
-          checkNumber(i, limit);
-          console.log(i, limit);
-          setCurrentVideo(array[i]);
+          setI(checkNumber(i + 1, limit));
         }}
-      ></button>
+      >
+        e
+      </button>
     </div>
   );
 };
