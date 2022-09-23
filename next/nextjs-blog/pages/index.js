@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import connectMongo from "../util/connectMongo";
 import Test from "../models/testModels";
 
+import Signin from "./Signin";
 import AddVideo from "./addVideo";
 import AddPersonForm from "./Form";
 import VideoPlayer from "./videoPlayer";
@@ -82,8 +83,13 @@ export default function Home({ tests }) {
     <div className="container">
       <main>
         <AddPersonForm></AddPersonForm>
+<<<<<<< Updated upstream
         <Signin></Signin>
 
+=======
+
+        <Signin></Signin>
+>>>>>>> Stashed changes
         <div>
           {tests.map((test) => (
             <div key={test._id}>
@@ -120,7 +126,6 @@ export default function Home({ tests }) {
 
           font-family: Arial, Helvetica, sans-serif;
 
-          font-variant-caps: all-petite-caps;
         }
         button {
           appearance: none;
@@ -186,7 +191,7 @@ export default function Home({ tests }) {
         input {
           appearance: none;
           font-weight: 1000;
-          font-variant-caps: all-petite-caps;
+        
 
           border: 1px solid rgba(0, 0, 0, 1);
           border-radius: 6px;

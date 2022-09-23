@@ -4,7 +4,7 @@ const AddVideo = (prop) => {
   const [newVideo, setNewVideo] = useState("");
 
   const editTest = async (_id, name, newVideoList) => {
-    const res = await fetch("/api/test/edit", {
+    const res = await fetch("/api/test/getserversideprops", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
