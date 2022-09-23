@@ -6,6 +6,7 @@ import Test from "../models/testModels";
 import AddVideo from "./addVideo";
 import AddPersonForm from "./Form";
 import VideoPlayer from "./videoPlayer";
+import Signin from "./signin";
 
 export default function Home({ tests }) {
   const createTest = async (name) => {
@@ -81,13 +82,14 @@ export default function Home({ tests }) {
     <div className="container">
       <main>
         <AddPersonForm></AddPersonForm>
+        <Signin></Signin>
+
         <div>
           {tests.map((test) => (
             <div key={test._id}>
               <h1>{test.name}</h1>
-
-              <VideoPlayer prop={test}></VideoPlayer>
               <AddVideo prop={test}></AddVideo>
+              <VideoPlayer prop={test}></VideoPlayer>
 
               <button
                 onClick={() => {

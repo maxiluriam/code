@@ -7,6 +7,18 @@ const testSchema = new Schema({
     reqiured: true,
     unique: false,
   },
+  email: {
+    type: String,
+
+    reqiured: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+
+    reqiured: true,
+    unique: false,
+  },
   videoList: {
     type: Array,
 
