@@ -1,62 +1,90 @@
 import { useState } from "react";
 
-const Signin = () => {
+const AddPersonForm = () => {
+
+
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const getpass = async (email) => {
-    console.log(email);
-    const res = await fetch("/api/test/getserversideprops", {
-      method: "PUT",
+
+  const createTest = async (name, email, password) => {
+   
+
+    const res = await fetch("/api/test/add", {
+      method: "POST",
       headers: {
         "content-type": "application/json",
       },
 
       body: JSON.stringify({
+        name: `${name}`,
         email: `${email}`,
+        password: `${password}`,
+        videoList: ["https://www.youtube.com/embed/VBlFHuCzPgY"],
       }),
     });
 
     const data = await res.json();
 
-    console.log(data);
-    return data;
+    //   console.log(data);
+    // return data;
   };
 
+  const handleSubmit = function (e) {
+    e.preventDefault();
+    console.log(e.target[1].value);
+
+    let name = e.target[0].value;
+    let email = e.target[1].value;
+    let password = e.target[2].value;
+
+    if (name.length > 2) {
+      createTest(name, email, password);
+    }
+  };
+
+  function handleNameChange(e) {
+    if (e.target.value.length < 10) {
+      setName(e.target.value);
+    } else {
+      alert("maximum 10 chars");
+    }
+  }
   function handleEmailChange(e) {
     setEmail(e.target.value);
   }
+
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
 
-  const handleSubmit = async function (e) {
-    e.preventDefault();
-
-    let email = e.target[0].value;
-    let password = e.target[1].value;
-
-    let test = await getpass(email);
-    console.log(test.test.password);
-    if (password === test.test.password) {
-      console.log("www");
-    }
-  };
-
   return (
     <div>
-      <h1>login in </h1>
+      <h1> create account</h1>
       <form onSubmit={handleSubmit}>
-        <input type="email" value={email} onChange={handleEmailChange} />
         <input
-          type="password"
+          type="text"
+          value={name}
+          placeholder="name"
+          onChange={handleNameChange}
+        />
+        <input
+          type="text"
+          value={email}
+          placeholder="email"
+          onChange={handleEmailChange}
+        />
+        <input
+          type="text"
           value={password}
+          placeholder="password"
           onChange={handlePasswordChange}
         />
-        <button type="submit"> login</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
 };
 
-export default Signin;
+export default AddPersonForm;

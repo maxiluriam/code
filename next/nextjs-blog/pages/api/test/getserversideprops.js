@@ -9,14 +9,19 @@ export default async function removeTest(req, res) {
     await connectMongo();
 
     console.log("f nikola");
-    console.log(req.body.email);
+    console.log(req.body.email,"ee");
+   
 
-    const test = await Test.findOne({ email: { $lte: req.body.email } });
+    const test = await Test.findOne({ "email": req.body.email  });
 
     console.log("f Werner");
 
-    console.log(test);
-    res.json({ test });
+
+    if (test.password === req.body.password) {
+      res.json({Boolean:"true",id:test.id});
+    }
+
+
   } catch (er) {
     console.log(er);
     res.json({ er });

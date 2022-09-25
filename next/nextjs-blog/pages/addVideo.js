@@ -1,10 +1,19 @@
 import { useState } from "react";
+import VideoPlayer from "./videoPlayer";
 
 const AddVideo = (prop) => {
+
+
+  const [videoList, setvideoList] = useState(prop.prop.videoList);
+
+console.log(videoList)
+
+
+
   const [newVideo, setNewVideo] = useState("");
 
   const editTest = async (_id, name, newVideoList) => {
-    const res = await fetch("/api/test/getserversideprops", {
+    const res = await fetch("/api/test/edit", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -39,6 +48,8 @@ const AddVideo = (prop) => {
       console.log(prop.prop.videoList);
 
       editTest(prop.prop._id, `${prop.prop.name}`, cache);
+
+      setvideoList(cache)
     } else {
       alert("Syntax error");
     }
@@ -53,6 +64,8 @@ const AddVideo = (prop) => {
   }
 
   return (
+<div>
+    <VideoPlayer prop={videoList}></VideoPlayer>
     <form
       onSubmit={() => {
         handleSubmit(event, prop);
@@ -62,6 +75,7 @@ const AddVideo = (prop) => {
 
       <input type="text" value={newVideo} onChange={handleChange} />
     </form>
+    </div>
   );
 };
 

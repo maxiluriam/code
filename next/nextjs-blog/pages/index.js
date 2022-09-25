@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { GetServerSideProps } from "next";
-import connectMongo from "../util/connectMongo";
-import Test from "../models/testModels";
 
-import Signin from "./Signin";
-import AddVideo from "./addVideo";
-import AddPersonForm from "./Form";
-import VideoPlayer from "./videoPlayer";
-import Signin from "./signin";
+import Login from "./login";
 
-export default function Home({ tests }) {
+
+import MainContent from "./mainContent"
+
+
+
+export default  function  Home(props) {
+
+
+
+
+
   const createTest = async (name) => {
     const randomNum = Math.floor(Math.random() * 10000);
 
@@ -30,9 +34,9 @@ export default function Home({ tests }) {
     console.log(data);
     // return data;
   };
-
   const removeTest = async (_id) => {
-    const randomNum = Math.floor(Math.random() * 10000);
+
+   
 
     const res = await fetch("/api/test/delete", {
       method: "PUT",
@@ -73,42 +77,25 @@ export default function Home({ tests }) {
 
   async function refreshPage() {
     setTimeout(refresh, 500);
-
+    
     function refresh(params) {
       window.location.reload(true);
     }
   }
-
   return (
     <div className="container">
       <main>
-        <AddPersonForm></AddPersonForm>
-<<<<<<< Updated upstream
-        <Signin></Signin>
 
-=======
 
-        <Signin></Signin>
->>>>>>> Stashed changes
-        <div>
-          {tests.map((test) => (
-            <div key={test._id}>
-              <h1>{test.name}</h1>
-              <AddVideo prop={test}></AddVideo>
-              <VideoPlayer prop={test}></VideoPlayer>
+        <Login></Login>
 
-              <button
-                onClick={() => {
-                  removeTest(test._id);
-                  refreshPage();
-                }}
-              >
-                REMOVE
-              </button>
-            </div>
-          ))}
-        </div>
+         
+       
+       
+        
       </main>
+
+  
 
       <style>{`
         .container {
@@ -224,29 +211,23 @@ export default function Home({ tests }) {
   );
 }
 
-export const getServerSideProps = async () => {
-  try {
-    console.log("connecting");
-    await connectMongo();
+export async function woo(user) {
+  const res = await fetch("/api/test/get", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
 
-    console.log("connceted");
+    body: JSON.stringify({
+      id:user.id
+    }),
+  })
+    
+  const data = await res.json()
+  console.log(res,"ee")
 
-    const tests = await Test.find();
+  return data
 
-    console.log("fetched");
-    console.log("F_Werner_/_F_Nikola");
+}
 
-    return {
-      props: {
-        tests: JSON.parse(JSON.stringify(tests)),
-      },
-    };
-  } catch (er) {
-    console.log(er);
-    return {
-      props: {
-        notFound: true,
-      },
-    };
-  }
-};
+

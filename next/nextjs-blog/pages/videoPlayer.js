@@ -2,9 +2,10 @@ import { useState } from "react";
 
 const VideoPlayer = (prop) => {
   const [i, setI] = useState(0);
-  const limit = prop.prop.videoList.length - 1;
+  console.log(prop)
+  const limit = prop.prop.length - 1;
 
-  let array = prop.prop.videoList;
+  let array = prop.prop;
 
   function checkNumber(i, limit) {
     if (i > limit) {
@@ -15,7 +16,7 @@ const VideoPlayer = (prop) => {
       return i;
     }
   }
-  let cache = 0;
+ 
   return (
     <div>
       <button
