@@ -116,7 +116,7 @@ export default  function  Home(props) {
         }
         button {
           appearance: none;
-          background-color: #2ea44f;
+          background-color: #1e81b0;
           border: 1px solid rgba(27, 31, 35, 0.15);
           border-radius: 6px;
           box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -141,39 +141,14 @@ export default  function  Home(props) {
 
           margin: 5px;
         }
-
-        .minus {
-          background-color: red;
+        button:hover {
+          background-color:#154c79;
         }
-
-        .minus:hover {
-          background-color: rgb(176, 1, 1);
+        button:disabled {
+          background-color:#063970;
         }
-
-        .plus {
-          background-color: green;
-        }
-
-        .plus:hover {
-          background-color: rgb(2, 98, 2);
-        }
-
-        .delete {
-          background-color: rgb(39, 39, 39);
-        }
-
-        .delete:hover {
-          background-color: rgb(0, 0, 0);
-        }
-
-        .add {
-          background-color: rgb(255, 255, 255);
-          color: black;
-        }
-
-        .add:hover {
-          background-color: rgb(234, 234, 234);
-        }
+       
+       
 
         input {
           appearance: none;

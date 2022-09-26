@@ -2,7 +2,6 @@
 
 import { GetServerSideProps } from "next";
 
-import VideoPlayer from "./videoPlayer";
 
 import AddVideo from "./addVideo";
 import { useState } from "react";
