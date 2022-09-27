@@ -1,16 +1,11 @@
 import { useState } from "react";
 
 const AddPersonForm = () => {
-
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   const createTest = async (name, email, password) => {
-   
-
     const res = await fetch("/api/test/add", {
       method: "POST",
       headers: {
@@ -62,26 +57,28 @@ const AddPersonForm = () => {
   return (
     <div>
       <h1> create account</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="signInDiv">
         <input
           type="text"
           value={name}
-          placeholder="name"
+          placeholder="Name"
           onChange={handleNameChange}
         />
         <input
           type="text"
           value={email}
-          placeholder="email"
+          placeholder="Email"
           onChange={handleEmailChange}
         />
         <input
           type="text"
           value={password}
-          placeholder="password"
+          placeholder="Password"
           onChange={handlePasswordChange}
         />
-        <button type="submit">Submit</button>
+        <button className="FormButton" type="submit">
+          Create
+        </button>
       </form>
     </div>
   );

@@ -1,24 +1,18 @@
-
-
 import { GetServerSideProps } from "next";
-
 
 import AddVideo from "./addVideo";
 import { useState } from "react";
 
-
 function MainContent(props) {
+  const [video, setUser] = useState("");
 
-   const [video, setUser] = useState("");
+  console.log(props);
 
-   console.log(props)
-    
+  return (
+    <div>
+      <AddVideo prop={props.prop.test[0]}></AddVideo>
+    </div>
+  );
+}
 
-   return(<div>
-   
-      <AddVideo prop={props.prop.test[0]} ></AddVideo>
-      </div>)
- }
-
-   export default MainContent;
-
+export default MainContent;

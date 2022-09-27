@@ -1,19 +1,6 @@
-import { useState } from "react";
-import { GetServerSideProps } from "next";
-
 import Login from "./login";
 
-
-import MainContent from "./mainContent"
-
-
-
-export default  function  Home(props) {
-
-
-
-
-
+export default function Home(props) {
   const createTest = async (name) => {
     const randomNum = Math.floor(Math.random() * 10000);
 
@@ -35,9 +22,6 @@ export default  function  Home(props) {
     // return data;
   };
   const removeTest = async (_id) => {
-
-   
-
     const res = await fetch("/api/test/delete", {
       method: "PUT",
       headers: {
@@ -77,7 +61,7 @@ export default  function  Home(props) {
 
   async function refreshPage() {
     setTimeout(refresh, 500);
-    
+
     function refresh(params) {
       window.location.reload(true);
     }
@@ -85,17 +69,8 @@ export default  function  Home(props) {
   return (
     <div className="container">
       <main>
-
-
         <Login></Login>
-
-         
-       
-       
-        
       </main>
-
-  
 
       <style>{`
         .container {
@@ -113,6 +88,27 @@ export default  function  Home(props) {
 
           font-family: Arial, Helvetica, sans-serif;
 
+        }
+
+        .iframButtonDiv{
+
+          display: flex;
+          flex-direction: row;
+        }
+
+        .iframeButton{
+          height: 7em ;
+          align-self:center;
+          font-weight:900;
+          font-Size:22px;
+
+        }
+
+        .FormButton{
+
+          width: 30%;
+          align-self: center;
+          
         }
         button {
           appearance: none;
@@ -148,6 +144,11 @@ export default  function  Home(props) {
           background-color:#063970;
         }
        
+        .signInDiv{
+          display: flex;
+          flex-direction: column;
+         
+        }
        
 
         input {
@@ -180,29 +181,6 @@ export default  function  Home(props) {
           margin: 5px;
         }
       `}</style>
-
-      <style jsx global>{``}</style>
     </div>
   );
 }
-
-export async function woo(user) {
-  const res = await fetch("/api/test/get", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-
-    body: JSON.stringify({
-      id:user.id
-    }),
-  })
-    
-  const data = await res.json()
-  console.log(res,"ee")
-
-  return data
-
-}
-
-
