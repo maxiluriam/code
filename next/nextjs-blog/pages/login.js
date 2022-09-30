@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Signin from "./signin";
 
-import MainContent from "./mainContent";
+import AddVideo from "./addVideo";
 
 const login = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const login = () => {
 
   const getpass = async (email, password) => {
     console.log(email);
-    const res = await fetch("/api/test/getserversideprops", {
+    const res = await fetch("/api/test/getthings", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -100,7 +100,6 @@ const login = () => {
               placeholder="Password"
             />
             <button type="submit" className="FormButton">
-              {" "}
               login
             </button>
           </form>
@@ -112,7 +111,7 @@ const login = () => {
   if (loggedin === true) {
     return (
       <div>
-        <MainContent prop={user}></MainContent>
+        <AddVideo prop={user.test[0]}></AddVideo>
       </div>
     );
   }

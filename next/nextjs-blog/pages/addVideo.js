@@ -1,161 +1,166 @@
 import { useState } from "react";
 
 const AddVideo = (prop) => {
-  const [array, setArray] = useState(prop.prop.videoList);
+  if (typeof window !== "undefined") {
+    console.log(prop);
 
-  const [newVideo, setNewVideo] = useState("");
+    console.log(prop);
+    const e = prop.prop.videoList;
+    const [array, setArray] = useState(e);
 
-  const [i, setI] = useState(0);
-  const [limit, setLimit] = useState(array.length - 1);
+    const [newVideo, setNewVideo] = useState("");
 
-  const editTest = async (_id, name, newVideoList) => {
-    const res = await fetch("/api/test/edit", {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
+    const [i, setI] = useState(0);
+    const [limit, setLimit] = useState(array.length - 1);
 
-      body: JSON.stringify({
-        _id: _id,
-        name: `${name}`,
-        videoList: newVideoList,
-      }),
-    });
+    const editTest = async (_id, name, newVideoList) => {
+      const res = await fetch("/api/test/edit", {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
 
-    const data = await res.json();
+        body: JSON.stringify({
+          _id: _id,
+          name: `${name}`,
+          videoList: newVideoList,
+        }),
+      });
 
-    console.log(data);
-    return data;
-  };
+      const data = await res.json();
 
-  const handleSubmit = async function (e, array) {
-    e.preventDefault();
-    const videoList = array;
-    let temp = "";
+      console.log(data);
+      return data;
+    };
 
-    if (e.target[1].value.includes("https://youtu.be/") === true) {
-      temp = e.target[1].value.replace(
-        "https://youtu.be/",
-        "https://www.youtube.com/embed/"
-      );
+    const handleSubmit = async function (e, array) {
+      e.preventDefault();
+      let temp = "";
 
-      const cache = [...videoList, temp];
+      if (e.target[1].value.includes("https://youtu.be/") === true) {
+        temp = e.target[1].value.replace(
+          "https://youtu.be/",
+          "https://www.youtube.com/embed/"
+        );
 
-      console.log(prop.prop.videoList);
+        const cache = [...array, temp];
 
-      editTest(prop.prop._id, `${prop.prop.name}`, cache);
+        editTest(prop.prop._id, prop.prop.name, cache);
 
-      setArray(cache);
-    } else {
-      alert("Syntax error");
-    }
-  };
+        setArray(cache);
+      } else {
+        alert("Syntax error");
+      }
+    };
 
-  function handleChange(e) {
-    if (e.target.value.length < 30) {
-      setNewVideo(e.target.value);
-    } else {
-      alert("maximum 30 chars");
-    }
-  }
-
-  function checkNumber(i, limit) {
-    if (i > limit) {
-      return 0;
-    } else if (i < 0) {
-      return limit;
-    } else {
-      return i;
-    }
-  }
-
-  async function removeVideo(i, array) {
-    const cache = [];
-
-    for (let j = 0; j < array.length; j++) {
-      if (i !== j) {
-        cache = [...cache, array[j]];
+    function handleChange(e) {
+      if (e.target.value.length < 30) {
+        setNewVideo(e.target.value);
+      } else {
+        alert("maximum 30 chars");
       }
     }
-    setArray(cache);
-    editTest(prop.prop._id, prop.prop.name, cache);
-    setArray(cache);
-  }
 
-  const left = "<--";
-  const right = "-->";
-  return (
-    <div>
-      <form
-        onSubmit={() => {
-          handleSubmit(event, array);
-        }}
-      >
-        <button type="submit">Submit</button>
+    function checkNumber(i, limit) {
+      if (i > limit) {
+        return 0;
+      } else if (i < 0) {
+        return limit;
+      } else {
+        return i;
+      }
+    }
 
-        <input type="text" value={newVideo} onChange={handleChange} />
-      </form>
+    async function removeVideo(i, array) {
+      const cache = [];
+
+      for (let j = 0; j < array.length; j++) {
+        if (i !== j) {
+          cache = [...cache, array[j]];
+        }
+      }
+      setArray(cache);
+      editTest(prop.prop._id, prop.prop.name, cache);
+      setArray(cache);
+    }
+
+    const left = "<--";
+    const right = "-->";
+    return (
       <div>
-        <div className="iframButtonDiv">
-          <button
-            className="iframeButton"
-            onClick={() => {
-              setI(checkNumber(i - 1, limit));
-            }}
-          >
-            {left}
-          </button>
-
-          <iframe
-            width="560"
-            height="315"
-            src={array[i]}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen="true"
-          ></iframe>
-
-          <button
-            className="iframeButton"
-            onClick={() => {
-              setI(checkNumber(i + 1, limit));
-            }}
-          >
-            {right}
-          </button>
-        </div>
-
-        <div className="button-container">
-          {array.map(function (item, index) {
-            {
-              if (index === i) {
-                return <button disabled="disabled"></button>;
-              } else if (index !== i) {
-                return (
-                  <button
-                    onClick={() => {
-                      setI(index);
-                    }}
-                  ></button>
-                );
-              }
-            }
-          })}
-        </div>
-
-        <button
-          onClick={() => {
-            setLimit(limit - 1);
-            removeVideo(i, array);
-            setI(checkNumber(i, limit));
+        <form
+          onSubmit={() => {
+            handleSubmit(event, array);
           }}
         >
-          Delete
-        </button>
+          <button type="submit">Submit</button>
+
+          <input type="text" value={newVideo} onChange={handleChange} />
+        </form>
+        <div>
+          <div className="iframButtonDiv">
+            <button
+              className="iframeButton"
+              onClick={() => {
+                setI(checkNumber(i - 1, limit));
+              }}
+            >
+              {left}
+            </button>
+
+            <iframe
+              width="560"
+              height="315"
+              src={array[i]}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen="true"
+            ></iframe>
+
+            <button
+              className="iframeButton"
+              onClick={() => {
+                setI(checkNumber(i + 1, limit));
+              }}
+            >
+              {right}
+            </button>
+          </div>
+
+          <div className="button-container">
+            {array.map(function (item, index) {
+              {
+                if (index === i) {
+                  return <button disabled="disabled"></button>;
+                } else if (index !== i) {
+                  return (
+                    <button
+                      onClick={() => {
+                        setI(index);
+                      }}
+                    ></button>
+                  );
+                }
+              }
+            })}
+          </div>
+
+          <button
+            onClick={() => {
+              setLimit(limit - 1);
+              removeVideo(i, array);
+              setI(checkNumber(i, limit));
+            }}
+          >
+            Delete
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div> your on server side</div>;
+  }
 };
 
 export default AddVideo;
