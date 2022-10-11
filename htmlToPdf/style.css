@@ -1,46 +1,36 @@
-.Main-Container{
-
-
+.Main-Container {
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
 }
 
-.header{
+.header {
+  border-bottom: 5px solid black;
 
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
 
-    border-bottom: 5px solid black;
+  padding-bottom: 40px;
 
-    padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: underline;
-
-    padding-bottom: 40px;
+  background-color: #3f599e;
 }
 
-body{
-
-    margin: 0px;
+body {
+  margin: 0px;
 }
 
-a{
-
-    margin: 40px;
-
+a {
+  margin: 40px;
 }
-
-
-
-
 
 .git {
-
-
-    text-decoration: black;
-
+  text-decoration: black;
 
   background: black;
   border-radius: 999px;
   box-shadow: black 0 10px 20px -10px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -52,37 +42,26 @@ a{
 
   padding-left: 20px;
   padding-right: 40px;
-  
+
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  
+
   word-break: break-word;
   border: 0;
 
   margin-left: 10px;
   margin-right: 10px;
-
-
- 
 }
 
-
-
-
-
-
 .link {
+  text-decoration: black;
 
-
-    text-decoration: black;
-
-
-  background: black;
+  background: #2465b0;
   border-radius: 999px;
   box-shadow: black 0 10px 20px -10px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -94,27 +73,56 @@ a{
 
   padding-left: 20px;
   padding-right: 50px;
-  
+
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  
+
   word-break: break-word;
   border: 0;
-
-
- 
 }
 
-svg{
+svg {
+  filter: invert(1);
 
-    filter: invert(1);
-
-    position: absolute;
-
+  position: absolute;
 }
 
-.linkedinsvg{
+.linkedinsvg {
+  left: 280px;
+}
 
-    left: 280px;
+.proggressDiv {
+  width: 200px;
+
+  border: 5px solid black;
+
+  position: absolute;
+
+  left: 78%;
+}
+
+.indprogress {
+  border: 5px solid red;
+}
+
+.file1 {
+  margin: 10px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 40px;
+}
+.file2 {
+  border-radius: 40px;
+  background-color: #1da1f2;
+  color: #1da1f2;
+  background: #1da1f2;
+  box-shadow: 2px 14px 15px -7px rgba(30, 166, 250, 0.36);
+}
+.infoDiv {
+  position: absolute;
+
+  left: 25%;
+
+  top: 0%;
 }
