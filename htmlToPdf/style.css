@@ -5,14 +5,19 @@
 
 .header {
   border-bottom: 5px solid black;
+  color: white;
 
   padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
 
   padding-bottom: 40px;
-
-  background-color: #3f599e;
+  background: rgb(69, 73, 109);
+  background: linear-gradient(
+    0deg,
+    rgba(57, 61, 92, 0.998) 0%,
+    rgb(56, 60, 89) 100%
+  );
 }
 
 body {
@@ -93,21 +98,47 @@ svg {
 }
 
 .proggressDiv {
-  width: 200px;
-
-  border: 5px solid black;
+  width: 250px;
 
   position: absolute;
 
-  left: 78%;
+  left: 70%;
 }
 
 .indprogress {
-  border: 5px solid red;
+  display: flex;
+
+  flex-direction: row;
+  text-decoration: black;
+
+  border-radius: 50px;
+  box-shadow: black 0 5px 15px -10px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 13px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  word-break: break-word;
+  border: 0;
+
+  margin-left: 10px;
+  margin-right: 10px;
+
+  margin: 10px;
 }
 
 .file1 {
   margin: 10px;
+  margin-top: 25px;
   background-color: white;
   border: 1px solid black;
   border-radius: 40px;
@@ -119,10 +150,37 @@ svg {
   background: #1da1f2;
   box-shadow: 2px 14px 15px -7px rgba(30, 166, 250, 0.36);
 }
+.img {
+  height: 60px;
+  width: 60px;
+
+  border-radius: 10px;
+}
+
+#svelte {
+  color: black;
+  background-color: white;
+  border: 5px solid #ff3e00;
+}
+#react {
+  color: black;
+  background-color: white;
+  border: 5px solid #76dffb;
+}
+#js {
+  color: black;
+  background-color: white;
+  border: 5px solid #f8dc3d;
+}
+#TS {
+  color: black;
+  background-color: white;
+  border: 5px solid #0079cb;
+}
 .infoDiv {
   position: absolute;
 
-  left: 25%;
+  left: 40%;
 
   top: 0%;
 }
