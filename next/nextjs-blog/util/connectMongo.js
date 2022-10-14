@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 export const connectMongo = async () =>
-  mongoose.connect(
-    "mongodb+srv://maxiluriam:Tigger77@cluster0.h3n66ef.mongodb.net/?retryWrites=true&w=majority"
-  );
+  mongoose.connect(`${process.env.MONGODB_URI}`);
 
 export default connectMongo;

@@ -6,7 +6,7 @@ const AddPersonForm = () => {
   const [password, setPassword] = useState("");
 
   const createTest = async (name, email, password) => {
-    const res = await fetch("/api/test/add", {
+    const res = await fetch("/api/test/test", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -20,9 +20,11 @@ const AddPersonForm = () => {
       }),
     });
 
+    console.log("www");
+
     const data = await res.json();
 
-    //   console.log(data);
+    console.log(data);
     // return data;
   };
 

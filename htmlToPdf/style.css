@@ -19,7 +19,9 @@
     rgb(56, 60, 89) 100%
   );
 }
-
+html {
+  margin: 0px;
+}
 body {
   margin: 0px;
 }
@@ -103,6 +105,8 @@ svg {
   position: absolute;
 
   left: 70%;
+
+  top: 20%;
 }
 
 .indprogress {
@@ -134,6 +138,8 @@ svg {
   margin-right: 10px;
 
   margin: 10px;
+
+  min-height: 92px;
 }
 
 .file1 {
@@ -160,23 +166,44 @@ svg {
 #svelte {
   color: black;
   background-color: white;
-  border: 5px solid #ff3e00;
+  border: 3px solid #ff3e00;
 }
 #react {
   color: black;
   background-color: white;
-  border: 5px solid #76dffb;
+  border: 3px solid #76dffb;
 }
 #js {
   color: black;
   background-color: white;
-  border: 5px solid #f8dc3d;
+  border: 3px solid #f8dc3d;
 }
 #TS {
   color: black;
   background-color: white;
-  border: 5px solid #0079cb;
+  border: 3px solid #0079cb;
 }
+#NEXT {
+  color: black;
+  background-color: white;
+  border: 3px solid black;
+}
+#nextimg {
+  margin-top: 5px;
+  height: 50px;
+  width: 60px;
+}
+#html {
+  color: black;
+  background-color: white;
+  border: 3px solid #ff5b1e;
+}
+#css {
+  color: black;
+  background-color: white;
+  border: 3px solid #8acce9;
+}
+
 .infoDiv {
   position: absolute;
 
