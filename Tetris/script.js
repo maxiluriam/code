@@ -488,6 +488,23 @@ let hitbox = function (Block, grid) {
     }
   }
 };
+let alterSpeed = function (points, movCount, movSpeed) {
+  let countCache = movCount;
+  let countSpeed = movSpeed;
+
+  if (points > 4000 && points < 8000 && movCount !== 4) {
+    countCache = 4;
+    countSpeed = 4;
+  } else if (points > 4000 && points < 8000 && movCount !== 3) {
+    countCache = 3;
+    countSpeed = 3;
+  } else if (points > 4000 && points < 8000 && movCount !== 2) {
+    countCache = 2;
+    countSpeed = 2;
+  }
+
+  return [countCache, countSpeed];
+};
 
 let counter = function (i, j) {
   if (i === j) {
