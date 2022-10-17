@@ -487,23 +487,26 @@ let hitbox = function (Block, grid) {
       }
     }
   }
-};
-let alterSpeed = function (points, movCount, movSpeed) {
+}; 
+let alterSpeed = function (movCount, movSpeed) {
+  let points = parseInt(score.innerHTML) 
   let countCache = movCount;
-  let countSpeed = movSpeed;
+  let SpeedCache = movSpeed;
+  
 
-  if (points > 4000 && points < 8000 && movCount !== 4) {
+  if (points > 4000 && points < 8000 && movSpeed !== 4 && movSpeed !== 1) {
     countCache = 4;
-    countSpeed = 4;
-  } else if (points > 4000 && points < 8000 && movCount !== 3) {
+    SpeedCache = 4;
+  } else if (points > 8000 && points < 12000 && movSpeed !== 3 && movSpeed !== 1) {
     countCache = 3;
-    countSpeed = 3;
-  } else if (points > 4000 && points < 8000 && movCount !== 2) {
+    SpeedCache = 3;
+  } else if (points > 12000 && movSpeed !== 2 && movSpeed !== 1) {
     countCache = 2;
-    countSpeed = 2;
+    SpeedCache = 2;
   }
 
-  return [countCache, countSpeed];
+
+  return [countCache,SpeedCache,countCache,SpeedCache];
 };
 
 let counter = function (i, j) {
@@ -536,6 +539,9 @@ let checkSpeed = 10;
 let sHeld = true;
 let lastRotation = [0, 0];
 
+let countCache = 5
+let SpeedCache = 5
+
 var keys = [];
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
@@ -550,8 +556,8 @@ function keyDownHandler(e) {
 
 function keyUpHandler(e) {
   if ((e.key === "s" || e.which === 40) && sHeld === false) {
-    movCount = 5;
-    movSpeed = 5;
+    movCount = 5 
+    movSpeed = 5
     sHeld = true;
   }
 }
@@ -599,13 +605,18 @@ window.addEventListener("keydown", (e) => {
     //    render(block, grid);
   }
 });
+
+
 block = chooseBlock();
 let land = false;
 
 let blockTick = setInterval(function () {
   if (pause === false) {
+    console.log(movCount,movSpeed);
     pointsUpp(sHeld);
     movCount = counter(movCount, movSpeed);
+   [movCount, movSpeed,countCache, SpeedCache] = alterSpeed(movCount, movSpeed);
+    console.log(movCount,movSpeed);
 
     let death = checkDeath(grid);
 
